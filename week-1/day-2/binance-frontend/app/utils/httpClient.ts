@@ -13,9 +13,9 @@ export async function getTicker(market: string): Promise<Ticker> {
 }
 const x = getTickers()
 
-export async function getTickers(): Promise<number> {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    return 1;
+export async function getTickers(): Promise<Ticker[]> {
+    const response = await axios.get(`${BASE_URL}/tickers`);
+    return response.data;
 }
 
 
@@ -37,4 +37,4 @@ export async function getKlines(market: string, interval: string, startTime: num
 export async function getMarkets(): Promise<string[]> {
     const response = await axios.get(`${BASE_URL}/markets`);
     return response.data;
-}
+}   
